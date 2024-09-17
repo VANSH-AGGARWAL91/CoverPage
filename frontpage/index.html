@@ -1,0 +1,159 @@
+<html>
+
+<head>
+    <title>Lab File</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Times New Roman', serif;
+        }
+
+        input:focus,
+        input:not(:placeholder-shown) {
+            border-bottom: none;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .a4 {
+                width: 210mm;
+                height: 297mm;
+                margin: auto;
+                padding: 20mm;
+                box-sizing: border-box;
+            }
+        }
+
+        .a4 {
+            width: 210mm;
+            height: 297mm;
+            margin: auto;
+            padding: 20mm;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .input-label {
+            font-weight: bold;
+        }
+
+        .download-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin: 20px auto;
+            display: block;
+            font-size: 16px;
+        }
+
+        /* Reduced space between logo and LAB FILE heading */
+        .my-6 {
+            margin: 0.5rem 0;
+        }
+
+        /* Reduced space between input fields */
+        .grid-cols-2 {
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <div id="content-to-pdf" class="a4 border-2 border-gray-400 p-10">
+        <div class="text-center">
+            <h1 class="text-xl font-bold">Noida Institute of Engineering &amp; Technology, Greater Noida</h1>
+            <h2 class="text-lg">School of Computer science in Emerging Technologies</h2>
+            <img alt="NIET Logo" class="mx-auto my-6" height="200" src="image.png" width="200" />
+            <div class="text-center my-20">
+                <h2 class="text-xl font-bold">LAB FILE</h2>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-lg">
+                <div>
+                    <span class="input-label">Branch:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Session:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Semester:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Section:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Subject Name:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Subject Code:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Student Name:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Roll Number:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Faculty Name:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+                <div>
+                    <span class="input-label">Faculty Sign:</span>
+                    <input class="border-b-2 border-gray-400 focus:outline-none" type="text" placeholder=" " />
+                </div>
+            </div>
+            <div class="text-center my-20">
+                <p class="text-lg">Department of Computer Science Engineering (AI)</p>
+                <p class="text-lg font-bold">NOIDA INSTITUTE OF ENGINEERING &amp; TECHNOLOGY</p>
+                <p class="text-lg">19, KNOWLEDGE PARK-II, INSTITUTIONAL AREA,</p>
+                <p class="text-lg">GREATER NOIDA, (U. P.) - 201 306, INDIA</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
+
+    <script>
+        function downloadPDF() {
+            var element = document.getElementById('content-to-pdf');
+            html2pdf()
+                .from(element)
+                .set({
+                    margin: 0, // Remove margin to fit everything into one page
+                    filename: 'Lab_File.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 4 }, // Increase scale for better quality
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } // Set format to A4
+                })
+                .save();
+        }
+    </script>
+</body>
+
+</html>
